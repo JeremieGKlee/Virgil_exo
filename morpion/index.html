@@ -64,10 +64,6 @@
             $("#screen").html("Bravo "+quiGagne);
             $(".case").unbind("click")
             $("#NewGame").show()
-        // function endTurnWin() {
-        //     $("#screen").html("Bravo "+playerEnCours);
-        //     $(".case").unbind("click")
-        //     $("#NewGame").show()
         }
         function endTurnNul() {
             $("#screen").html("Fin du jeux, personne n'a gagné");
@@ -83,51 +79,66 @@
         })
         function victoire(soitrondsoitcroix){
             
-            // if (
-            //     $("#case1").html()== soitrondsoitcroix &&
-            //     $("#case2").html()== soitrondsoitcroix &&
-            //     $("#case3").html()== soitrondsoitcroix ||
-            //     $("#case4").html()== soitrondsoitcroix &&
-            //     $("#case5").html()== soitrondsoitcroix &&
-            //     $("#case6").html()== soitrondsoitcroix ||
-            //     $("#case7").html()== soitrondsoitcroix &&
-            //     $("#case8").html()== soitrondsoitcroix &&
-            //     $("#case9").html()== soitrondsoitcroix ||
-            //     $("#case1").html()== soitrondsoitcroix &&
-            //     $("#case4").html()== soitrondsoitcroix &&
-            //     $("#case7").html()== soitrondsoitcroix ||            
-            //     $("#case2").html()== soitrondsoitcroix &&
-            //     $("#case5").html()== soitrondsoitcroix &&
-            //     $("#case8").html()== soitrondsoitcroix ||            
-            //     $("#case3").html()== soitrondsoitcroix &&
-            //     $("#case6").html()== soitrondsoitcroix &&
-            //     $("#case9").html()== soitrondsoitcroix ||            
-            //     $("#case1").html()== soitrondsoitcroix &&
-            //     $("#case5").html()== soitrondsoitcroix &&
-            //     $("#case9").html()== soitrondsoitcroix ||        
-            //     $("#case3").html()== soitrondsoitcroix &&
-            //     $("#case5").html()== soitrondsoitcroix &&
-            //     $("#case7").html()== soitrondsoitcroix
-            // )
-            // test de la ligne
-            let estvrai = true;
-            for (var casepointe = 1; casepointe <= 3; casepointe++){
-                if($("#case"+casepointe) .html()!= soitrondsoitcroix){
-                    estvrai = false;
-                }
-            }
-            if(estvrai == true)
-            {
+            if (
+                $("#case1").html()== soitrondsoitcroix &&
+                $("#case2").html()== soitrondsoitcroix &&
+                $("#case3").html()== soitrondsoitcroix ||
+                $("#case4").html()== soitrondsoitcroix &&
+                $("#case5").html()== soitrondsoitcroix &&
+                $("#case6").html()== soitrondsoitcroix ||
+                $("#case7").html()== soitrondsoitcroix &&
+                $("#case8").html()== soitrondsoitcroix &&
+                $("#case9").html()== soitrondsoitcroix ||
+                $("#case1").html()== soitrondsoitcroix &&
+                $("#case4").html()== soitrondsoitcroix &&
+                $("#case7").html()== soitrondsoitcroix ||            
+                $("#case2").html()== soitrondsoitcroix &&
+                $("#case5").html()== soitrondsoitcroix &&
+                $("#case8").html()== soitrondsoitcroix ||            
+                $("#case3").html()== soitrondsoitcroix &&
+                $("#case6").html()== soitrondsoitcroix &&
+                $("#case9").html()== soitrondsoitcroix ||            
+                $("#case1").html()== soitrondsoitcroix &&
+                $("#case5").html()== soitrondsoitcroix &&
+                $("#case9").html()== soitrondsoitcroix ||        
+                $("#case3").html()== soitrondsoitcroix &&
+                $("#case5").html()== soitrondsoitcroix &&
+                $("#case7").html()== soitrondsoitcroix
+            )
+            // /*test de la ligne*/
+            // let jegagne = true;
+            // for (let casepointe = 1; casepointe <= 3; casepointe++){
+            //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+            //         jegagne = false;
+            //     }
+            // }
+            // if(jegagne == true)
+            // {
+            //     return true;
+            // }
+            // /*test de la colonne*/
+            // jegagne = true;
+            // for (let casepointe = 1; casepointe <= 7; casepointe+=3){
+            //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+            //         jegagne=false;
+            //     }
+            // }
+            // if(jegagne == true)
+            // {
+            //     return true;
+            // }
+            // /*test de la diagonale*/
+            // jegagne = true;
+            // for (let casepointe = 1; casepointe <= 9; casepointe+=4){
+            //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+            //         jegagne=false;
+            //     }
+            // }
+            // if(jegagne == true)
+            // {
+            //     return true;
+            // }          
                 return true;
-            }
-
-            for (var casepointe = 1; casepointe <= 3; casepointe++){
-                if($("#case"+casepointe) .html()!= soitrondsoitcroix){
-                    estvrai=false;
-                }
-            }
-            }
-            return true;
             else{
                 return false;
             }
