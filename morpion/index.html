@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body> 
+        <div id="grille">
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        <script>
+
+            let player1 = "X"
+            let player2 = "O"
+
+            let playerEnCours = player1
+
+            $(".case").click(function(){
+                $(this).text(playerEnCours)
+                /*if(playerEnCours == player1){
+                    playerEnCours = player2
+                }
+                else playerEnCours = player1*/
+
+                playerEnCours = (playerEnCours == player1) ? player2 : player1
+
+                $(this).unbind("click")
+            })
+        
+        </script>
+    </body>
+
+</html>
