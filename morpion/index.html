@@ -1,46 +1,139 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body> 
-        <div id="grille">
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-            <div class="case"></div>
-        </div>
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-        <script>
 
-            let player1 = "X"
-            let player2 = "O"
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Mon Morpion</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- https://www.yazo.net/racine/v1/techniques/morpions.html
+         voir ce site pour generer jeu contre PC-->
+</head>
 
-            let playerEnCours = player1
-
-            $(".case").click(function(){
-                $(this).text(playerEnCours)
+<body>
+    <div id="grille">
+        <div id="case1" class="case"></div>
+        <div id="case2" class="case"></div>
+        <div id="case3" class="case"></div>
+        <div id="case4" class="case"></div>
+        <div id="case5" class="case"></div>
+        <div id="case6" class="case"></div>
+        <div id="case7" class="case"></div>
+        <div id="case8" class="case"></div>
+        <div id="case9" class="case"></div>
+    </div>
+    <p id="screen"></p>
+    <div id="controls">
+        <button id="NewGame">Nouvelle partie?</button>
+        <!-- <button id="stop">Stop</button>
+        <button id="makeScore">Attribuer le score</button> -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        function pointeurCase() {
+            $(this).text(playerEnCours)
                 /*if(playerEnCours == player1){
                     playerEnCours = player2
                 }
                 else playerEnCours = player1*/
-
+            if(victoire(playerEnCours)){
+                endTurnWin()
+            }
+            else{
                 playerEnCours = (playerEnCours == player1) ? player2 : player1
-
                 $(this).unbind("click")
-            })
+                nbCase++;
+                if (nbCase == 9) {
+                    endTurnNul();
+                }
+            }
+        }
+        let player1 = "X";
+        let player2 = "O";
+        let playerEnCours = player1;
         
-        </script>
-    </body>
+
+        let nbCase = 0;
+        $(document).ready(function() {
+            $("#NewGame").hide()
+        });
+        $(".case").click(pointeurCase)
+        
+        function endTurnWin() {
+            let quiGagne = (playerEnCours == player1) ? "Joueur 1" : "Joueur 2";
+            $("#screen").html("Bravo "+quiGagne);
+            $(".case").unbind("click")
+            $("#NewGame").show()
+        // function endTurnWin() {
+        //     $("#screen").html("Bravo "+playerEnCours);
+        //     $(".case").unbind("click")
+        //     $("#NewGame").show()
+        }
+        function endTurnNul() {
+            $("#screen").html("Fin du jeux, personne n'a gagné");
+            $("#NewGame").show()
+        }
+        $("#NewGame").click(function() {
+            $(".case").html("");
+            $("#NewGame").hide();
+            $("#screen").html("");
+            $(".case").click(pointeurCase);
+            nbCase = 0;
+            playerEnCours=player1;
+        })
+        function victoire(soitrondsoitcroix){
+            
+            // if (
+            //     $("#case1").html()== soitrondsoitcroix &&
+            //     $("#case2").html()== soitrondsoitcroix &&
+            //     $("#case3").html()== soitrondsoitcroix ||
+            //     $("#case4").html()== soitrondsoitcroix &&
+            //     $("#case5").html()== soitrondsoitcroix &&
+            //     $("#case6").html()== soitrondsoitcroix ||
+            //     $("#case7").html()== soitrondsoitcroix &&
+            //     $("#case8").html()== soitrondsoitcroix &&
+            //     $("#case9").html()== soitrondsoitcroix ||
+            //     $("#case1").html()== soitrondsoitcroix &&
+            //     $("#case4").html()== soitrondsoitcroix &&
+            //     $("#case7").html()== soitrondsoitcroix ||            
+            //     $("#case2").html()== soitrondsoitcroix &&
+            //     $("#case5").html()== soitrondsoitcroix &&
+            //     $("#case8").html()== soitrondsoitcroix ||            
+            //     $("#case3").html()== soitrondsoitcroix &&
+            //     $("#case6").html()== soitrondsoitcroix &&
+            //     $("#case9").html()== soitrondsoitcroix ||            
+            //     $("#case1").html()== soitrondsoitcroix &&
+            //     $("#case5").html()== soitrondsoitcroix &&
+            //     $("#case9").html()== soitrondsoitcroix ||        
+            //     $("#case3").html()== soitrondsoitcroix &&
+            //     $("#case5").html()== soitrondsoitcroix &&
+            //     $("#case7").html()== soitrondsoitcroix
+            // )
+            // test de la ligne
+            let estvrai = true;
+            for (var casepointe = 1; casepointe <= 3; casepointe++){
+                if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+                    estvrai = false;
+                }
+            }
+            if(estvrai == true)
+            {
+                return true;
+            }
+
+            for (var casepointe = 1; casepointe <= 3; casepointe++){
+                if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+                    estvrai=false;
+                }
+            }
+            }
+            return true;
+            else{
+                return false;
+            }
+        }
+
+    </script>
+</body>
 
 </html>

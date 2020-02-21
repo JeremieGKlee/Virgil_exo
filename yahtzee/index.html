@@ -98,9 +98,9 @@
         })
         
         $(".dice").click(function(){
-            $(this).toggleClass("blocked")
+            $(this).toggleClass("blocked");
             
-            let somme = 0
+            let somme = 0;
         
             $(".dice.blocked img").each(function(){
                 somme+= $(this).data("nb")

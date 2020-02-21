@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+#grille {
+    width: 18em;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.case {
+    font-size: 3em;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    border: 2px solid black;
+    text-align: center;
+}
