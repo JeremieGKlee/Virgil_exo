@@ -1,7 +1,24 @@
 *{
 	box-sizing: border-box;
 }
-
+h1{
+	width: 100%;
+	text-align: center;
+}
+#asideG_grille_asideD{
+	display: flex;
+	
+	width: 100%;
+}
+#asideG{
+	width:18rem;
+	text-align: center;
+	flex: 3;
+}
+#Croix_J1{
+	Width:12rem;
+	height:12rem;
+}
 #grille{
 	
 	width: 18rem;/*16px * 18 = 288px*/
@@ -19,5 +36,13 @@
 	text-align: center;
 	font-size: 3rem;/*16px x 3 = 48px = 1em ou font-size:3em;
 	 c'est lui qui donne la taille de départ*/
-	
+		
+}
+#asideD{
+	width:18rem;
+	flex: 3;
+}
+#Rond_J2{
+	Width:12rem;
+	height:12rem;
 }
