@@ -15,6 +15,11 @@
     <div id ="asideG_grille_asideD">
         <aside id="asideG">
             <h2>Iron Man</h2>
+            <form action="">
+                Alias: <input type="text" id="Play1" required>
+                <input type="submit">
+            </form>
+            
             <img src="Photo/Croix.png" alt="Image de Iron Man" id="Croix_J1">
         </aside>
         <div id="grille">
@@ -28,65 +33,80 @@
             <div id="case8" class="case"><img id="img8" src=""></div>
             <div id="case9" class="case"><img id="img9" src=""></div>
         </div>
-        <aside id="asideG">
+        <aside id="asideD">
             <h2>Thanos</h2>
+            <form action="">
+                Alias: <input type="text" id="Play2" required>
+                <input type="submit">
+            </form>
+            
             <img src="Photo/Rond.png" alt="Image de Iron Man" id="Rond_J2">
         </aside>
     </div>
     <p id="screen"></p>
     <div id="controls">
-        <button id="NewGame">Nouvelle partie?</button>
-        <!-- <button id="stop">Stop</button>
-        <button id="makeScore">Attribuer le score</button> -->
+        <a href="#" class="retour">
+            <img src="Photo/pierre_du_temps.jpg" alt="Pierre du temps" id="img_pierre_du_temps"></img>
+        </a>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
     <script>
+        function JoueursInscrits(){
+            if ($("#Play1").val()!= /* != signifie différent*/"" && $("#Play2").val()!= "")
+                $("#grille").show()
+        }
+        $("input[type='submit']").click(JoueursInscrits)
+
         function pointeurCase() {
-            $(this).find("img").attr("src",playerEnCours);
+            $(this).find("img").attr("src",playerEnCours.symbol);
+            // console.log($(this))
             // $(this).text(playerEnCours);
                 /*if(playerEnCours == player1){
                     playerEnCours = player2
                 }
                 else playerEnCours = player1*/
-            if(victoire(playerEnCours)){
+            if(victoire(playerEnCours.symbol)){
                 endTurnWin()
+                $("#"+playerEnCours.aside+" img").attr("src", "Photo/Snap-"+playerEnCours.aside+".gif")
             }
             else{
-                playerEnCours = (playerEnCours == player1) ? player2 : player1
-                $(this).unbind("click")
+                playerEnCours = (playerEnCours == /*== signifie si*/ player1) ?/*? signifie alors*/ player2 :/*: signifie sinon*/ player1 /*ternaire*/
+                $(this).off("click")
                 nbCase++;
                 if (nbCase == 9) {
                     endTurnNul();
                 }
             }
         }
-        let player1 = "Photo/MiniCroix.png";
-        let player2 = "Photo/MiniRond.png";
+        let player1 = {"symbol" : "Photo/MiniCroix.png", "aside" : "asideG"};
+        let player2 = {"symbol" : "Photo/MiniRond.png", "aside" : "asideD"};
         let playerEnCours = player1;
         
 
         let nbCase = 0;
         $(document).ready(function() {
-            $("#NewGame").hide()
+            $("#img_pierre_du_temps").hide()
+            $("#grille").hide()
+
         });
         $(".case").click(pointeurCase);
         
         function endTurnWin() {
-            let quiGagne = (playerEnCours == player1) ? "Iron Man" : "Thanos";
+            let quiGagne = (playerEnCours.symbol == player1.symbol) ? "Iron Man" : "Thanos";
             $("#screen").html("Bravo "+quiGagne);
-            $(".case").unbind("click")
-            $("#NewGame").show()
+            $(".case").off("click")
+            $("#img_pierre_du_temps").show()
         }
         function endTurnNul() {
-            $("#screen").html("Fin du jeux, personne n'a gagné");
-            $("#NewGame").show()
+            $("#screen").html("Fin du jeux, personne n'a gagné, veux tu activer la pierre du temps");
+            $("#img_pierre_du_temps").show()
         }
-        $("#NewGame").click(function() {
-            $(".case").html("");
-            // $("#img").attr("src","");
-            $("#NewGame").hide();
+        $("#img_pierre_du_temps").on("click",function() {
+            $(".case img").attr("src","");
+            $(".case img").attr("src","");
+            $(this).hide();
             $("#screen").html("");
             $(".case").click(pointeurCase);
             nbCase = 0;
