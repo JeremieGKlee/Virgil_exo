@@ -1,187 +1,195 @@
-<!DOCTYPE html>
-<html lang="fr">
+    <!DOCTYPE html>
+    <html lang="fr">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Mon Morpion</title>
-    <link rel="stylesheet" href="Style/style.css">
-    <!-- https://www.yazo.net/racine/v1/techniques/morpions.html
-         voir ce site pour generer jeu contre PC-->
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <title>Mon Morpion</title>
+        <link rel="stylesheet" href="Style/style.css">
+        <!-- https://www.yazo.net/racine/v1/techniques/morpions.html
+            voir ce site pour generer jeu contre PC-->
+    </head>
 
-<body>
-    <H1>Seras tu assez fort pour empêcher le SNAP???</H1>
-    <div id ="asideG_grille_asideD">
-        <aside id="asideG">
-            <h2>Iron Man</h2>
-            
-                Alias: <input type="text" id="Play1" required>
-                <input type="submit">
-            
-            
-            <img src="Photo/Croix.png" alt="Image de Iron Man" id="Croix_J1">
-        </aside>
-        <div id="grille">
-            <div id="case1" class="case"><img id="img1" src=""></div>
-            <div id="case2" class="case"><img id="img2" src=""></div>
-            <div id="case3" class="case"><img id="img3" src=""></div>
-            <div id="case4" class="case"><img id="img4" src=""></div>
-            <div id="case5" class="case"><img id="img5" src=""></div>
-            <div id="case6" class="case"><img id="img6" src=""></div>
-            <div id="case7" class="case"><img id="img7" src=""></div>
-            <div id="case8" class="case"><img id="img8" src=""></div>
-            <div id="case9" class="case"><img id="img9" src=""></div>
+    <body>
+        <H1>Seras tu assez fort pour empêcher le SNAP de THANOS???</H1>
+        <div id ="asideG_grille_asideD">
+            <aside id="asideG">
+                <h2>Iron Man</h2>
+                <article>Alias:
+                    <input type="text" id="Play1" required><input type="submit">
+                </article> 
+                <img src="Photo/Croix.png" alt="Image de Iron Man" id="Croix_J1">
+            </aside>
+            <div id="grille">
+                <div id="case1" class="case"><img id="img1" src=""></div>
+                <div id="case2" class="case"><img id="img2" src=""></div>
+                <div id="case3" class="case"><img id="img3" src=""></div>
+                <div id="case4" class="case"><img id="img4" src=""></div>
+                <div id="case5" class="case"><img id="img5" src=""></div>
+                <div id="case6" class="case"><img id="img6" src=""></div>
+                <div id="case7" class="case"><img id="img7" src=""></div>
+                <div id="case8" class="case"><img id="img8" src=""></div>
+                <div id="case9" class="case"><img id="img9" src=""></div>
+            </div>
+            <aside id="asideD">
+                <h2>Thanos</h2>
+                <article>Alias:
+                    <input type="text" id="Play2" required><input type="submit">
+                </article>
+                <img src="Photo/Rond.png" alt="Image de Iron Man" id="Rond_J2">
+            </aside>
         </div>
-        <aside id="asideD">
-            <h2>Thanos</h2>
-            
-                Alias: <input type="text" id="Play2" required>
-                <input type="submit">
-            
-            
-            <img src="Photo/Rond.png" alt="Image de Iron Man" id="Rond_J2">
-        </aside>
-    </div>
-    <p id="screen"></p>
-    <div id="controls">
-        <a href="#" class="retour">
-            <img src="Photo/pierre_du_temps.jpg" alt="Pierre du temps" id="img_pierre_du_temps"></img>
-        </a>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-    <script>
-        function JoueursInscrits(){
-            if ($("#Play1").val()!= /* != signifie différent*/"" && $("#Play2").val()!= "")
-                $("#grille").show()
-        }
-        $("input[type='submit']").click(JoueursInscrits)
-
-        function pointeurCase() {
-            $(this).find("img").attr("src",playerEnCours.symbol);
-            // console.log($(this))
-            // $(this).text(playerEnCours);
-                /*if(playerEnCours == player1){
-                    playerEnCours = player2
-                }
-                else playerEnCours = player1*/
-            if(victoire(playerEnCours.symbol)){
-                endTurnWin()
-                $("#"+playerEnCours.aside+" img").attr("src", "Photo/Snap-"+playerEnCours.aside+".gif")
-            
+        <p id="screen"></p>
+        <div id="controls">
+            <a href="#" class="retour">
+                <img src="Photo/pierre_du_temps.jpg" alt="Pierre du temps" id="img_pierre_du_temps"></img>
+            </a>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
+        <script>
+            function JoueursInscrits(){
+                if ($("#Play1").val()!= /* != signifie différent*/"" && $("#Play2").val()!= "")
+                    $("#grille").show()
             }
-            else{
-                playerEnCours = (playerEnCours == /*== signifie si*/ player1) ?/*? signifie alors*/ player2 :/*: signifie sinon*/ player1 /*ternaire*/
-                $(this).off("click")
-                nbCase++;
-                if (nbCase == 9) {
-                    endTurnNul();
+            $("input[type='submit']").click(JoueursInscrits)
+
+            function pointeurCase() {
+                $(this).find("img").attr("src",playerEnCours.symbol);
+                // console.log($(this))
+                // $(this).text(playerEnCours);
+                    /*if(playerEnCours == player1){
+                        playerEnCours = player2
+                    }
+                    else playerEnCours = player1*/
+                if(victoire(playerEnCours.symbol)){
+                    endTurnWin()
+                    $("#"+playerEnCours.aside+" img").attr("src", "Photo/Snap-"+playerEnCours.aside+".gif")
+                
+                }
+                else{
+                    playerEnCours = (playerEnCours == /*== signifie si*/ player1) ?/*? signifie alors*/ player2 :/*: signifie sinon*/ player1 /*ternaire*/
+                    $(this).off("click")
+                    nbCase++;
+                    if (nbCase == 9) {
+                        endTurnNul();
+                    }
                 }
             }
-        }
-        let player1 = {"symbol" : "Photo/MiniCroix.png", "aside" : "asideG"};
-        let player2 = {"symbol" : "Photo/MiniRond.png", "aside" : "asideD"};
-        let playerEnCours = player1;
-        
-
-        let nbCase = 0;
-        $(document).ready(function() {
-            $("#img_pierre_du_temps").hide()
-            $("#grille").hide()
-        });
-        $(".case").click(pointeurCase);
-        
-        function endTurnWin() {
-            let quiGagne = (playerEnCours.symbol == player1.symbol) ? "Iron Man" : "Thanos";
-            let snapImage = (playerEnCours.symbol != player1.symbol) ? "Photo/MiniRond.png" : "Photo/MiniRond.png";
-            $("#screen").html("Bravo "+quiGagne);
-            $(".case").off("click")
-            $("#img_pierre_du_temps").show()
-            $(".case img").attr("src:'+snapImage'").hide();
-        }
-        function endTurnNul() {
-            $("#screen").html("Fin du jeux, personne n'a gagné, veux-tu activer la pierre du temps");
-            $("#img_pierre_du_temps").show()
-        }
-        $("#img_pierre_du_temps").on("click",function() {
+            let player1 = {"symbol" : "Photo/MiniCroix.png", "aside" : "asideG"};
+            let player2 = {"symbol" : "Photo/MiniRond.png", "aside" : "asideD"};
+            let playerEnCours = player1;
             
-            $(".case img").attr("src","");
-            $(this).hide();
-            $("#screen").html("");
+
+            let nbCase = 0;
+            $(document).ready(function() {
+                $("#img_pierre_du_temps").hide()
+                $("#grille").hide()
+            });
             $(".case").click(pointeurCase);
-            nbCase = 0;
-            playerEnCours=player1;
-        })
-        function victoire(soitrondsoitcroix){
             
-            if (
-                $("#img1").attr("src")== soitrondsoitcroix &&
-                $("#img2").attr("src")== soitrondsoitcroix &&
-                $("#img3").attr("src")== soitrondsoitcroix ||
-                $("#img4").attr("src")== soitrondsoitcroix &&
-                $("#img5").attr("src")== soitrondsoitcroix &&
-                $("#img6").attr("src")== soitrondsoitcroix ||
-                $("#img7").attr("src")== soitrondsoitcroix &&
-                $("#img8").attr("src")== soitrondsoitcroix &&
-                $("#img9").attr("src")== soitrondsoitcroix ||
-                $("#img1").attr("src")== soitrondsoitcroix &&
-                $("#img4").attr("src")== soitrondsoitcroix &&
-                $("#img7").attr("src")== soitrondsoitcroix ||            
-                $("#img2").attr("src")== soitrondsoitcroix &&
-                $("#img5").attr("src")== soitrondsoitcroix &&
-                $("#img8").attr("src")== soitrondsoitcroix ||            
-                $("#img3").attr("src")== soitrondsoitcroix &&
-                $("#img6").attr("src")== soitrondsoitcroix &&
-                $("#img9").attr("src")== soitrondsoitcroix ||            
-                $("#img1").attr("src")== soitrondsoitcroix &&
-                $("#img5").attr("src")== soitrondsoitcroix &&
-                $("#img9").attr("src")== soitrondsoitcroix ||        
-                $("#img3").attr("src")== soitrondsoitcroix &&
-                $("#img5").attr("src")== soitrondsoitcroix &&
-                $("#img7").attr("src")== soitrondsoitcroix
-            )
-            // /*test de la ligne*/
-            // let jegagne = true;
-            // for (let casepointe = 1; casepointe <= 3; casepointe++){
-            //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
-            //         jegagne = false;
-            //     }
-            // }
-            // if(jegagne == true)
-            // {
-            //     return true;
-            // }
-            // /*test de la colonne*/
-            // jegagne = true;
-            // for (let casepointe = 1; casepointe <= 7; casepointe+=3){
-            //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
-            //         jegagne=false;
-            //     }
-            // }
-            // if(jegagne == true)
-            // {
-            //     return true;
-            // }
-            // /*test de la diagonale*/
-            // jegagne = true;
-            // for (let casepointe = 1; casepointe <= 9; casepointe+=4){
-            //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
-            //         jegagne=false;
-            //     }
-            // }
-            // if(jegagne == true)
-            // {
-            //     return true;
-            // }          
-                return true;
-            else{
-                return false;
+            function endTurnWin() {
+                let quiGagne = (playerEnCours.symbol == player1.symbol) ? "Iron Man, tu as encore sauvé l'univers" : "Thanos, tu as réussi à faire disparaître ma belle_mère";
+                let snapImage = (playerEnCours.symbol != player1.symbol) ? "Photo/MiniCroix.png" : "Photo/MiniRond.png";
+                let snapJoueur = (playerEnCours.symbol != player1.symbol) ? "asideG" : "asideD";
+                $("#screen").html("Bravo "+quiGagne);
+                $(".case").off("click");
+                $("#img_pierre_du_temps").show();
+
+                $(".case img").each(function(){
+                    if ($(this).attr("src")==snapImage){
+                        $(this).hide(3000).attr("src","")
+                    }
+                })
+
+                $("aside").each(function(){
+                    if ($(this).attr("id")==snapJoueur){
+                        $(this).fadeOut(5000);
+                    }
+                })
+            }       
+            function endTurnNul() {
+                $("#screen").html("Fin du jeux, personne n'a gagné, veux-tu activer la pierre du temps");
+                $("#img_pierre_du_temps").show();
             }
-        }
+            $("#img_pierre_du_temps").on("click",function() {
+                $(this).hide();
+                $("aside").show();
+                $(".case img").attr("src","").show();
+                $("#screen").html("");
+                $(".case").click(pointeurCase);
+                nbCase = 0;
+                playerEnCours=player1;
+            })
+            function victoire(soitrondsoitcroix){
+                
+                if (
+                    $("#img1").attr("src")== soitrondsoitcroix &&
+                    $("#img2").attr("src")== soitrondsoitcroix &&
+                    $("#img3").attr("src")== soitrondsoitcroix ||
+                    $("#img4").attr("src")== soitrondsoitcroix &&
+                    $("#img5").attr("src")== soitrondsoitcroix &&
+                    $("#img6").attr("src")== soitrondsoitcroix ||
+                    $("#img7").attr("src")== soitrondsoitcroix &&
+                    $("#img8").attr("src")== soitrondsoitcroix &&
+                    $("#img9").attr("src")== soitrondsoitcroix ||
+                    $("#img1").attr("src")== soitrondsoitcroix &&
+                    $("#img4").attr("src")== soitrondsoitcroix &&
+                    $("#img7").attr("src")== soitrondsoitcroix ||            
+                    $("#img2").attr("src")== soitrondsoitcroix &&
+                    $("#img5").attr("src")== soitrondsoitcroix &&
+                    $("#img8").attr("src")== soitrondsoitcroix ||            
+                    $("#img3").attr("src")== soitrondsoitcroix &&
+                    $("#img6").attr("src")== soitrondsoitcroix &&
+                    $("#img9").attr("src")== soitrondsoitcroix ||            
+                    $("#img1").attr("src")== soitrondsoitcroix &&
+                    $("#img5").attr("src")== soitrondsoitcroix &&
+                    $("#img9").attr("src")== soitrondsoitcroix ||        
+                    $("#img3").attr("src")== soitrondsoitcroix &&
+                    $("#img5").attr("src")== soitrondsoitcroix &&
+                    $("#img7").attr("src")== soitrondsoitcroix
+                )
+                // /*test de la ligne*/
+                // let jegagne = true;
+                // for (let casepointe = 1; casepointe <= 3; casepointe++){
+                //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+                //         jegagne = false;
+                //     }
+                // }
+                // if(jegagne == true)
+                // {
+                //     return true;
+                // }
+                // /*test de la colonne*/
+                // jegagne = true;
+                // for (let casepointe = 1; casepointe <= 7; casepointe+=3){
+                //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+                //         jegagne=false;
+                //     }
+                // }
+                // if(jegagne == true)
+                // {
+                //     return true;
+                // }
+                // /*test de la diagonale*/
+                // jegagne = true;
+                // for (let casepointe = 1; casepointe <= 9; casepointe+=4){
+                //     if($("#case"+casepointe) .html()!= soitrondsoitcroix){
+                //         jegagne=false;
+                //     }
+                // }
+                // if(jegagne == true)
+                // {
+                //     return true;
+                // }          
+                    return true;
+                else{
+                    return false;
+                }
+            }
 
-    </script>
-</body>
+        </script>
+    </body>
 
-</html>
+    </html>

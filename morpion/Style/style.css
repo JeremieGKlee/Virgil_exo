@@ -35,16 +35,9 @@ h1{
 	border: 1px solid #888;
 	text-align: center;
 	font-size: 3rem;/*16px x 3 = 48px = 1em ou font-size:3em;
-	 c'est lui qui donne la taille de départ*/
-	transition: all 0.5s;	
+	 c'est lui qui donne la taille de départ*/		
 }
-.case:hover{
-	color:green;
-  	border:black;
-  	opacity:0;
-    transform: scale(2, 2);
 
-}
 #asideD{
 	width:18rem;
 	flex: 3;
