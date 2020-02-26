@@ -15,10 +15,10 @@
     <div id ="asideG_grille_asideD">
         <aside id="asideG">
             <h2>Iron Man</h2>
-            <form action="">
+            
                 Alias: <input type="text" id="Play1" required>
                 <input type="submit">
-            </form>
+            
             
             <img src="Photo/Croix.png" alt="Image de Iron Man" id="Croix_J1">
         </aside>
@@ -35,10 +35,10 @@
         </div>
         <aside id="asideD">
             <h2>Thanos</h2>
-            <form action="">
+            
                 Alias: <input type="text" id="Play2" required>
                 <input type="submit">
-            </form>
+            
             
             <img src="Photo/Rond.png" alt="Image de Iron Man" id="Rond_J2">
         </aside>
@@ -70,6 +70,7 @@
             if(victoire(playerEnCours.symbol)){
                 endTurnWin()
                 $("#"+playerEnCours.aside+" img").attr("src", "Photo/Snap-"+playerEnCours.aside+".gif")
+            
             }
             else{
                 playerEnCours = (playerEnCours == /*== signifie si*/ player1) ?/*? signifie alors*/ player2 :/*: signifie sinon*/ player1 /*ternaire*/
@@ -89,22 +90,24 @@
         $(document).ready(function() {
             $("#img_pierre_du_temps").hide()
             $("#grille").hide()
-
         });
         $(".case").click(pointeurCase);
         
         function endTurnWin() {
             let quiGagne = (playerEnCours.symbol == player1.symbol) ? "Iron Man" : "Thanos";
+            let snapImage = (playerEnCours.symbol != player1.symbol) ? "Photo/MiniRond.png" : "Photo/MiniRond.png";
             $("#screen").html("Bravo "+quiGagne);
             $(".case").off("click")
             $("#img_pierre_du_temps").show()
+            // $(".case img").attr("src:"+snapImage,"");
+            $(".case img").attr("src:Photo/MiniRond.png","");
         }
         function endTurnNul() {
-            $("#screen").html("Fin du jeux, personne n'a gagné, veux tu activer la pierre du temps");
+            $("#screen").html("Fin du jeux, personne n'a gagné, veux-tu activer la pierre du temps");
             $("#img_pierre_du_temps").show()
         }
         $("#img_pierre_du_temps").on("click",function() {
-            $(".case img").attr("src","");
+            
             $(".case img").attr("src","");
             $(this).hide();
             $("#screen").html("");
