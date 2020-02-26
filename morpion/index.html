@@ -99,8 +99,7 @@
             $("#screen").html("Bravo "+quiGagne);
             $(".case").off("click")
             $("#img_pierre_du_temps").show()
-            // $(".case img").attr("src:"+snapImage,"");
-            $(".case img").attr("src:Photo/MiniRond.png","");
+            $(".case img").attr("src:'+snapImage'").hide();
         }
         function endTurnNul() {
             $("#screen").html("Fin du jeux, personne n'a gagné, veux-tu activer la pierre du temps");
